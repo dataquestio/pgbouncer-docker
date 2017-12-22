@@ -2,6 +2,8 @@
 
 A docker container running a configurable pgbouncer. Optimized for running Kubernetes on GKE with Cloud SQL Postgres.
 
+Dockerhub: [https://hub.docker.com/r/handshake/pgbouncer/](https://hub.docker.com/r/handshake/pgbouncer/)
+
 ## Configuration
 
 ### DB_USER
