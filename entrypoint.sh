@@ -1,4 +1,5 @@
 #!/bin/sh
+
 # Here are some parameters. See all on
 # https://pgbouncer.github.io/config.html
 
@@ -23,7 +24,7 @@ if [ ! -f ${PG_CONFIG_DIR}/pgbouncer.ini ]; then
 # Lines starting with “;” or “#” are taken as comments and ignored.
 # The characters “;” and “#” are not recognized when they appear later in the line.
 [pgbouncer]
-listen_addr = 127.0.0.1
+listen_addr = * # Leave security to kubernetes
 listen_port = 6432
 auth_type = any
 ; When server connection is released back to pool:
@@ -34,7 +35,7 @@ pool_mode = ${POOL_MODE:-transaction}
 max_client_conn = ${MAX_CLIENT_CONN:-500}
 default_pool_size = ${DEFAULT_POOL_SIZE:-1}
 min_pool_size = ${MIN_POOL_SIZE:-0}
-max_db_connections = ${MAX_DB_CONNECTIONS:-100}
+max_db_connections = ${MAX_DB_CONNECTIONS:-100} # Cloud SQL Postgres 100 max_connections
 reserve_pool_size = ${RESERVE_POOL_SIZE:-1}
 reserve_pool_timeout = ${RESERVE_POOL_TIMEOUT:-5.0}
 server_lifetime = ${SERVER_LIFETIME:-3600}
@@ -45,9 +46,6 @@ log_pooler_errors = ${LOG_POOLER_ERRORS:-1}
 stats_period = ${STATS_PERIOD:-60}
 ignore_startup_parameters = ${IGNORE_STARTUP_PARAMETERS}
 tcp_keepalive = ${TCP_KEEPALIVE:-1}
-# tcp_keepcnt = ${TCP_KEEPCNT:-5}
-# tcp_keepidle = ${TCP_KEEPIDLE:-300}
-# tcp_keepintvl = ${TCP_KEEPINTVL:-300}
 
 [databases]
 * = host=${DB_HOST:?"Setup pgbouncer config error! You must set DB_HOST env"} port=${DB_PORT:-5432} user=${ESCAPED_DB_USER:-postgres} ${ESCAPED_DB_PASSWORD:+password=${DB_PASSWORD}}
