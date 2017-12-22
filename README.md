@@ -22,4 +22,4 @@ The IP or host of the database. If using cloud sql proxy, this will most likely 
 
 ## Inspiration
 
-This container takes inspiration from ![https://github.com/heroku/heroku-buildpack-pgbouncer](https://github.com/heroku/heroku-buildpack-pgbouncer) and ![https://github.com/guizmaii/pgbouncer](https://github.com/guizmaii/pgbouncer). Thanks to both!
+This container takes inspiration from [https://github.com/heroku/heroku-buildpack-pgbouncer](https://github.com/heroku/heroku-buildpack-pgbouncer) and [https://github.com/guizmaii/pgbouncer](https://github.com/guizmaii/pgbouncer). Thanks to both!
