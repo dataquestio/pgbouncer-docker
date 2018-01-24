@@ -3,7 +3,7 @@ FROM alpine:3.6
 # Base libraries
 RUN apk update && \
     apk upgrade && \
-    apk --update add automake build-base libevent-dev curl openssl-dev
+    apk --update add automake build-base libevent-dev curl openssl-dev postgres-client
 
 # Install and compile pgbouncer
 RUN curl https://pgbouncer.github.io/downloads/files/1.8.1/pgbouncer-1.8.1.tar.gz | tar xvz
@@ -14,6 +14,7 @@ RUN apk del git build-base automake autoconf libtool m4 && \
     rm -f /var/cache/apk/* && \
     cd .. && rm -Rf pgbouncer-1.8.1
 
+ADD VERSION .
 ADD entrypoint.sh ./
 
 ENTRYPOINT ["./entrypoint.sh"]
