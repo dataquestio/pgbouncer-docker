@@ -24,7 +24,7 @@ if [ ! -f ${PG_CONFIG_DIR}/pgbouncer.ini ]; then
 # Lines starting with “;” or “#” are taken as comments and ignored.
 # The characters “;” and “#” are not recognized when they appear later in the line.
 [pgbouncer]
-listen_addr = * # Leave security to kubernetes
+listen_addr = *
 listen_port = 6432
 auth_type = any
 ; When server connection is released back to pool:
@@ -35,7 +35,7 @@ pool_mode = ${POOL_MODE:-transaction}
 max_client_conn = ${MAX_CLIENT_CONN:-500}
 default_pool_size = ${DEFAULT_POOL_SIZE:-1}
 min_pool_size = ${MIN_POOL_SIZE:-0}
-max_db_connections = ${MAX_DB_CONNECTIONS:-100} # Cloud SQL Postgres 100 max_connections
+max_db_connections = ${MAX_DB_CONNECTIONS:-100}
 reserve_pool_size = ${RESERVE_POOL_SIZE:-1}
 reserve_pool_timeout = ${RESERVE_POOL_TIMEOUT:-5.0}
 server_lifetime = ${SERVER_LIFETIME:-3600}
@@ -60,4 +60,4 @@ chown -R ${PG_USER}:${PG_USER} ${PG_LOG}
 
 cat ${PG_CONFIG_DIR}/pgbouncer.ini
 echo "Starting pgbouncer..."
-exec pgbouncer -u ${PG_USER} ${PG_CONFIG_DIR}/pgbouncer.ini
+exec pgbouncer -v -v -u ${PG_USER} ${PG_CONFIG_DIR}/pgbouncer.ini
