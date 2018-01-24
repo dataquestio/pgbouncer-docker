@@ -3,7 +3,7 @@ FROM alpine:3.6
 # Base libraries
 RUN apk update && \
     apk upgrade && \
-    apk --update add automake build-base libevent-dev curl openssl-dev postgres-client
+    apk --update add automake build-base libevent-dev curl openssl-dev postgresql-client
 
 # Install and compile pgbouncer
 RUN curl https://pgbouncer.github.io/downloads/files/1.8.1/pgbouncer-1.8.1.tar.gz | tar xvz
