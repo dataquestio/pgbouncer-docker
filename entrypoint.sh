@@ -17,7 +17,8 @@ if [ ! -f ${PG_CONFIG_DIR}/pgbouncer.ini ]; then
   echo "create pgbouncer config in ${PG_CONFIG_DIR}"
   mkdir -p ${PG_CONFIG_DIR}
 
-  printf "\
+  {
+    printf "\
 #pgbouncer.ini
 # Description
 # Config file is in “ini” format. Section names are between “[” and “]”.
@@ -51,6 +52,7 @@ tcp_keepalive = ${TCP_KEEPALIVE:-1}
 * = host=${DB_HOST:?"Setup pgbouncer config error! You must set DB_HOST env"} port=${DB_PORT:-5432} user=${ESCAPED_DB_USER:-postgres} ${ESCAPED_DB_PASSWORD:+password=${DB_PASSWORD}}
 ################## end file ##################
 " > ${PG_CONFIG_DIR}/pgbouncer.ini
+  } &> /dev/null
 fi
 
 adduser ${PG_USER}
